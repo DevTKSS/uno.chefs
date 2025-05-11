@@ -44,35 +44,35 @@ Use `Section<T>()` inside `UseConfiguration`. You can chain multiple configs.
 
 1. Inject `IWritableOptions<AppConfig>` in the constructor.
 
-```csharp
-public class UserService(
-    ChefsApiClient client,
-    IWritableOptions<AppConfig> chefAppOptions,
-    IWritableOptions<Credentials> credentialOptions)
-    : IUserService
-```
+    ```csharp
+    public class UserService(
+        ChefsApiClient client,
+        IWritableOptions<AppConfig> chefAppOptions,
+        IWritableOptions<Credentials> credentialOptions)
+        : IUserService
+    ```
 
 2. Implement the logic to read and write to the configuration.
 
-```csharp
-public async ValueTask<AppConfig> GetSettings(CancellationToken ct)
-    => chefAppOptions.Value;
-```
+    ```csharp
+    public async ValueTask<AppConfig> GetSettings(CancellationToken ct)
+        => chefAppOptions.Value;
+    ```
 
-```csharp
- public async Task SetSettings(AppConfig chefSettings, CancellationToken ct)
- {
-    var settings = new AppConfig
+    ```csharp
+    public async Task SetSettings(AppConfig chefSettings, CancellationToken ct)
     {
-    Title = chefSettings.Title,
-    IsDark = chefSettings.IsDark,
-    Notification = chefSettings.Notification,
-    AccentColor = chefSettings.AccentColor,
-    };
+        var settings = new AppConfig
+        {
+        Title = chefSettings.Title,
+        IsDark = chefSettings.IsDark,
+        Notification = chefSettings.Notification,
+        AccentColor = chefSettings.AccentColor,
+        };
 
-    await chefAppOptions.UpdateAsync(_ => settings);
- }
-```
+        await chefAppOptions.UpdateAsync(_ => settings);
+    }
+    ```
 
 ## Source Code
 
