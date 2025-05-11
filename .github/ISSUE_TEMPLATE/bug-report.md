@@ -23,28 +23,34 @@ If the matter is security related, please disclose it privately via https://gith
 
 ## Environment
 
-<!-- For bug reports Check one or more of the following options with "x" -->
+<!-- For bug reports Check one or more of the following options with "x" and add the version you working with.-->
+- [ ] Visual Studio 2022 (version: )
+- [ ] Visual Studio 2022 for Mac (version: )
+- [ ] Visual Studio Code (version: )
+- [ ] Rider Windows
+- [ ] Rider macOS
+- [ ] Rider Linux
 
-Nuget Package:
+## Nuget Package(s)
 
-Package Version(s):
+<!-- Are there specific Nuget Packages causing this problem? Please add their depending version you used-->
 
-Affected platform(s):
+## Uno Version(s)
+
+- Uno.Sdk Version:
+- Uno Extension Version:
+
+## Affected platform(s)
 
 - [ ] iOS
 - [ ] Android
 - [ ] WebAssembly
 - [ ] WebAssembly renders for Xamarin.Forms
 - [ ] Windows
+- [ ] Desktop
 - [ ] Build tasks
 
-Visual Studio:
-
-- [ ] 2017 (version: )
-- [ ] 2019 (version: )
-- [ ] for Mac (version: )
-
-Relevant plugins:
+## Relevant plugins
 
 - [ ] Resharper (version: )
 
