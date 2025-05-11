@@ -38,7 +38,7 @@ public partial class App : Application
 				// Switch to Development environment when running in DEBUG
 				.UseEnvironment(Environments.Development)
 #endif
-				// Temporary until uno loggig is fixed in extensions.
+				// Temporary until uno logging is fixed in extensions.
 				//.UseLogging(configure: (context, logBuilder) =>
 				//{
 				//	// Configure log levels for different categories of logging
@@ -71,8 +71,8 @@ public partial class App : Application
 				})
 				.ConfigureAppConfiguration(config =>
 				{
-					// Clear any launchurl to make sure we always start at beginning
-					// Deeplinking issue https://github.com/unoplatform/uno.chefs/issues/738
+					// Clear any launch url to make sure we always start at beginning
+					// Deep linking issue https://github.com/unoplatform/uno.chefs/issues/738
 					var appsettingsPrefix = new Dictionary<string, string?>
 							{
 								{ HostingConstants.LaunchUrlKey, "" }

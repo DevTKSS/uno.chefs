@@ -10,7 +10,7 @@ public class UserService(
 	: IUserService
 {
 	private readonly IWritableOptions<Credentials> _credentialOptions = credentialOptions;
-	
+
 	private IState<User> _user => State.Async(this, GetCurrent);
 
 	public IFeed<User> User => _user;
@@ -48,8 +48,8 @@ public class UserService(
 	//In case we need to add auth
 	//public async ValueTask<bool> BasicAuthenticate(string email, string password, CancellationToken ct)
 	//{
-	//    var autentication = await _userEndpoint.Authenticate(email, password, ct);
-	//    if (autentication)
+	//    var authentication = await _userEndpoint.Authenticate(email, password, ct);
+	//    if (authentication)
 	//    {
 	//        await _credentialOptions.UpdateAsync(_ => new Credentials()
 	//        {
