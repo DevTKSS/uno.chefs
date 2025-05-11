@@ -14,65 +14,39 @@ Writable configuration from `Uno.Extensions.Configuration` provides you an inter
 
 ### Create a new record
 
-```csharp
-public record AppConfig
-{
-    public string? Title { get; init; }
-    public bool? IsDark { get; init; }
-    public bool? Notification { get; init; }
-    public string? AccentColor { get; init; }
-}
-```
+[!code-csharp[](../../Chefs/Business/Models/AppConfig.cs#L5-L11)]
 
 ### Add to your `IConfigBuilder`
 
 Use `Section<T>()` inside `UseConfiguration`. You can chain multiple configs.
 
-```csharp
-.UseConfiguration(configure: configBuilder =>
-    configBuilder
-        .EmbeddedSource<App>()
-        .Section<AppConfig>()
-        .Section<Credentials>()
-        .Section<SearchHistory>()
-)
-```
+[!code-csharp[](../../Chefs/App.xaml.host.cs#L48-L54)]
 
 ### Get and Update the value
 
 #### UserService.cs
 
-1. Inject `IWritableOptions<AppConfig>` in the constructor.
+1. Inject `IWritableOptions<AppConfig>` in the primary constructor of the UserService and store it in a `private readonly` property.
 
-    ```csharp
-    public class UserService(
-        ChefsApiClient client,
-        IWritableOptions<AppConfig> chefAppOptions,
-        IWritableOptions<Credentials> credentialOptions)
-        : IUserService
-    ```
+    [!code-csharp[](../../Chefs/Services/Users/UserService.cs#L7-L12)]
 
-2. Implement the logic to read and write to the configuration.
+#### SettingsService
+<!-- markdownlint-disable MD029 -->
+2. Implement the logic to read from to the configuration.
 
-    ```csharp
-    public async ValueTask<AppConfig> GetSettings(CancellationToken ct)
-        => chefAppOptions.Value;
-    ```
+    [!code-csharp[](../../Chefs/Services/Settings/SettingsService.cs#L5-L6)]
 
-    ```csharp
-    public async Task SetSettings(AppConfig chefSettings, CancellationToken ct)
-    {
-        var settings = new AppConfig
-        {
-        Title = chefSettings.Title,
-        IsDark = chefSettings.IsDark,
-        Notification = chefSettings.Notification,
-        AccentColor = chefSettings.AccentColor,
-        };
+3. To update them, which includes awaiting the current Settings from the ValueTask we just implemented
 
-        await chefAppOptions.UpdateAsync(_ => settings);
-    }
-    ```
+    [!code-csharp[](../../Chefs/Services/Settings/SettingsService.cs#L13-L23)]
+
+4. Implement the logic to write them back to the configuration.
+
+    [!code-csharp[](../../Chefs/Services/Settings/SettingsService.cs#L8-L11)]
+
+5. And then of course, connect the Update with the write-back.
+
+    [!code-csharp[](../../Chefs/Services/Settings/SettingsService.cs#L13-L27?highlight=25)]
 
 ## Source Code
 
