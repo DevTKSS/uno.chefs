@@ -38,7 +38,6 @@ If the matter is security related, please disclose it privately via https://gith
 ## Uno Version(s)
 
 - Uno.Sdk Version:
-- Uno Extension Version:
 
 ## Affected platform(s)
 
