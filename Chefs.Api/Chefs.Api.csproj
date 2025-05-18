@@ -7,12 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="..\AppData\*.json" LinkBase="AppData" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+		<PackageReference Include="Swashbuckle.AspNetCore" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-		<PackageReference Include="Swashbuckle.AspNetCore" />
+	  <EmbeddedResource Include="..\AppData\*.json" LinkBase="AppData" />
 	</ItemGroup>
 
 </Project>
